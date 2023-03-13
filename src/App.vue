@@ -1,85 +1,30 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterView } from 'vue-router'
+import { useCommonStore } from "@/stores/common";
+const commonStore = useCommonStore()
+
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+  <header class="fixed from-black to-transparent bg-gradient-to-b h-10 duration-200 w-full p-4" :class="{'h-26' : commonStore.isShowHeader}">
+    <div v-if="commonStore.isShowHeader" class="duration-200 opacity-100">
+      <div class="flex space-x-4 text-white px-10">
+        <button v-for="item in 5" class="text-md font-bold">
+          Link {{ item }}
+        </button>
+      </div>
+      <button @click="commonStore.onHideHeader">
+        <img src="@/assets/icons/icon-ArrowUp.png" class="w-6 h-3">
+      </button>
+    </div>
+    <div v-else class="duration-200">
+      <button @click="commonStore.onShowHeader">
+        <img src="@/assets/icons/icon-Menu.png" class="w-6 h-6">
+      </button>
     </div>
   </header>
-
   <RouterView />
+  <div>
+    <img class="absolute top-0 left-1/2 transform -translate-x-1/2" src="@/assets/icons/light_main.png" alt="">
+  </div>
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
-</style>
