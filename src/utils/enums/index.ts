@@ -5,14 +5,14 @@ export const HeaderItems = [
     },
     {
         title: 'Github',
-        link: 'https://thinh-le.tech/'
+        link: 'https://github.com/heydayle'
     },
     {
         title: 'Instagram',
-        link: 'https://thinh-le.tech/'
+        link: 'https://instagram.com/heyday.le/'
     },
     {
         title: 'Wakatime',
-        link: 'https://thinh-le.tech/'
+        link: 'https://wakatime.com/@heyday'
     },
 ]

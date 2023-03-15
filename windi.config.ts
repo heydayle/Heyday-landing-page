@@ -39,13 +39,18 @@ export default defineConfig({
                     '80%': { opacity: 0},
                     '81%': { opacity: 0.2},
                     '100%': { opacity: 1},
+                },
+                increase: {
+                    '0%': { width: '0%', opacity: 0.1 },
+                    '1000%': { width: '100%', opacity: 1 },
                 }
             },
             animation: {
                 'swingingLightBulb': 'swingingLightBulb 1s infinite',
                 'flashLight': 'flashLightSlow 900ms',
                 'flashLightClassic': 'flashLightMain 3000ms',
-                'toUp': 'toUp 600ms'
+                'toUp': 'toUp 600ms',
+                'increase': 'increase 600ms'
             }
         },
     },

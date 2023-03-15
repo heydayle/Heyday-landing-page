@@ -6,24 +6,29 @@ const commonStore = useCommonStore()
 </script>
 
 <template>
-  <main class="m-auto flex-1">
+  <main class="m-auto flex-1 animate-flashLightClassic">
     <h1 class="
       text-[8rem] text-white text-center
       font-extrabold text-transparent bg-clip-text
       bg-gradient-to-b from-white/30 to-black
-      animate-flashLightClassic relative z-10"
+      relative z-10"
     >
       <span style="text-shadow: rgba(0,0,0,0.3) -3px 4px;">HEYDAY</span>
     </h1>
     <div class="flex justify-center space-x-4 text-white px-10">
       <button
           v-for="(item, index) in HeaderItems" :key="index"
-          class="group animate-flashLightClassic transition flex flex-col text-md font-bold"
+          class="group relative z-10 transition flex flex-col text-md font-bold"
       >
         <a :href="item.link" class="hover:bg-transparent">
-          <div class="shadow-inner shadow-xl">{{ item.title }}</div>
+          <div class="shadow-inner shadow-xl text-white">{{ item.title }}</div>
           <div class="w-0 h-0.25 bg-transparent duration-400 group-hover:(w-full bg-white)"/>
         </a>
+      </button>
+    </div>
+    <div class="flex justify-center pt-10">
+      <button class="m-auto text-center" @click="commonStore.enableSearch">
+        <img width="30" height="30" src="@/assets/icons/icon-Search.png">
       </button>
     </div>
   </main>

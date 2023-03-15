@@ -1,6 +1,6 @@
 @import './base.css';
 body{
-  @apply bg-black
+  @apply bg-black overflow-hidden
 }
 #app {
   @apply bg-black

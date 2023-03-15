@@ -5,7 +5,7 @@ import { useCommonStore } from "@/stores/common";
 import { HeaderItems } from "@/utils/enums";
 
 const commonStore = useCommonStore()
-const isShowMainLight = computed(() => !commonStore.isShowHeader)
+const isShowMainLight = computed(() => !commonStore.isShowHeader && !commonStore.isEnableSearch)
 </script>
 
 <template>
@@ -19,8 +19,10 @@ const isShowMainLight = computed(() => !commonStore.isShowHeader)
             v-for="(item, index) in HeaderItems" :key="index"
             class="group animate-flashLight transition flex flex-col text-md font-bold"
         >
-          <div>{{ item.title }}</div>
-          <div class="w-0 h-0.25 bg-transparent duration-400 group-hover:(w-full bg-white)"/>
+          <a :href="item.link" class="hover:bg-transparent">
+            <div class="text-white">{{ item.title }}</div>
+            <div class="w-0 h-0.25 bg-transparent duration-400 group-hover:(w-full bg-white)"/>
+          </a>
         </button>
       </div>
     </div>
@@ -31,9 +33,18 @@ const isShowMainLight = computed(() => !commonStore.isShowHeader)
     </div>
   </header>
   <RouterView v-if="isShowMainLight" />
+  <div v-show="commonStore.isEnableSearch" class="animate-flashLightClassic absolute top-1/2 left-1/2 transform -translate-x-1/2 z-10 w-full px-[28rem]">
+    <div class="group flex space-x-4 w-full">
+      <button @click="commonStore.disableSearch" class="transform rotate-45 duration-300 group-hover:rotate-0">
+        <img class="w-8" src="@/assets/icons/icon-Close.png">
+      </button>
+      <input class="w-120 h-12 animate-increase bg-transparent text-white text-xl px-6 pb-1 border border-white rounded-full focus-visible:outline-none" />
+    </div>
+  </div>
   <div>
     <img v-if="isShowMainLight" class="absolute z-9 animate-flashLightClassic duration-300 top-0 left-1/2 transform -translate-x-1/2" src="@/assets/icons/light_main.png" alt="">
     <img v-if="commonStore.isShowHeader" class="absolute z-9 animate-flashLight duration-300 top-0 left-1/2 transform -translate-x-1/2" src="@/assets/icons/light-header.png" alt="">
-    <div v-if="commonStore.isShowHeader" class="w-full h-[100vh] absolute inset-0 z-8 bg-black"/>
+    <img v-if="commonStore.isEnableSearch" class="absolute z-9 animate-flashLightClassic duration-300 -bottom-40 left-1/2 transform -translate-x-1/3" src="@/assets/icons/light-search.png" alt="">
+    <div v-if="!isShowMainLight" class="w-full h-[100vh] absolute inset-0 z-8 bg-black"/>
   </div>
 </template>
