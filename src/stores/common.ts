@@ -4,6 +4,7 @@ export const useCommonStore = defineStore('common', {
     state: () => ({
         isShowHeader: false,
         isEnableSearch: false,
+        isEnableNote: false,
     }),
     actions: {
         onShowHeader() {
@@ -17,6 +18,12 @@ export const useCommonStore = defineStore('common', {
         },
         disableSearch() {
             this.isEnableSearch = false
+        },
+        enableNote(value: boolean) {
+            this.isEnableNote = !value
+        },
+        disableNote() {
+            this.isEnableNote = false
         }
     },
 })

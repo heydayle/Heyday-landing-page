@@ -15,14 +15,14 @@ const isShowMainLight = computed(() => !commonStore.isShowHeader && !commonStore
       text-[8rem] text-white text-center
       font-extrabold text-transparent bg-clip-text
       bg-gradient-to-b from-white/30 to-black
-      relative z-10"
+      relative z-2"
       >
         <span style="text-shadow: rgba(0,0,0,0.3) -3px 4px;">HEYDAY</span>
       </h1>
       <div class="flex justify-center space-x-4 text-white px-10">
         <button
             v-for="(item, index) in HeaderItems" :key="index"
-            class="group relative z-10 transition flex flex-col text-md font-bold"
+            class="group relative z-2 transition flex flex-col text-md font-bold"
         >
           <a :href="item.link" class="hover:bg-transparent">
             <div class="shadow-inner shadow-xl text-white">{{ item.title }}</div>
@@ -36,4 +36,12 @@ const isShowMainLight = computed(() => !commonStore.isShowHeader && !commonStore
         </button>
       </div>
     </main>
+    <div class="fixed transform duration-800 w-full text-center" :class="commonStore.isEnableNote ? 'bottom-[92vh] z-3 rotate-180' : 'bottom-0'">
+      <button
+          :class="{'animate__bounce' : !commonStore.isEnableNote}"
+          class="animate__animated animate__infinite animate__slower m-auto p-4"
+          @click="commonStore.enableNote(commonStore.isEnableNote)">
+        <img src="@/assets/icons/icon-ArrowUp.png" class="w-6 h-3 animate-toUp">
+      </button>
+    </div>
 </template>

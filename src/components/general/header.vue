@@ -7,7 +7,7 @@ const commonStore = useCommonStore()
 </script>
 <template>
   <header
-      class="fixed z-10 from-black to-transparent bg-gradient-to-b h-10 duration-200 w-full p-4"
+      class="fixed z-2 from-black to-transparent bg-gradient-to-b h-10 duration-200 w-full p-4"
       :class="{'h-26' : commonStore.isShowHeader}"
   >
     <div v-show="commonStore.isShowHeader" class="flex duration-200 opacity-100">
