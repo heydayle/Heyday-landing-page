@@ -1,35 +1,39 @@
 <script setup lang="ts">
 import { useCommonStore } from "@/stores/common";
 import { HeaderItems } from "@/utils/enums";
+import {computed} from "vue";
+import Search from "@/components/general/search.vue";
 const commonStore = useCommonStore()
 
+const isShowMainLight = computed(() => !commonStore.isShowHeader && !commonStore.isEnableSearch)
 </script>
 
 <template>
-  <main class="m-auto flex-1 animate-flashLightClassic">
-    <h1 class="
+    <Search v-show="commonStore.isEnableSearch" />
+    <main v-if="isShowMainLight"  class="m-auto flex-1 animate-flashLightClassic">
+      <h1 class="
       text-[8rem] text-white text-center
       font-extrabold text-transparent bg-clip-text
       bg-gradient-to-b from-white/30 to-black
       relative z-10"
-    >
-      <span style="text-shadow: rgba(0,0,0,0.3) -3px 4px;">HEYDAY</span>
-    </h1>
-    <div class="flex justify-center space-x-4 text-white px-10">
-      <button
-          v-for="(item, index) in HeaderItems" :key="index"
-          class="group relative z-10 transition flex flex-col text-md font-bold"
       >
-        <a :href="item.link" class="hover:bg-transparent">
-          <div class="shadow-inner shadow-xl text-white">{{ item.title }}</div>
-          <div class="w-0 h-0.25 bg-transparent duration-400 group-hover:(w-full bg-white)"/>
-        </a>
-      </button>
-    </div>
-    <div class="flex justify-center pt-10">
-      <button class="m-auto text-center" @click="commonStore.enableSearch">
-        <img width="30" height="30" src="@/assets/icons/icon-Search.png">
-      </button>
-    </div>
-  </main>
+        <span style="text-shadow: rgba(0,0,0,0.3) -3px 4px;">HEYDAY</span>
+      </h1>
+      <div class="flex justify-center space-x-4 text-white px-10">
+        <button
+            v-for="(item, index) in HeaderItems" :key="index"
+            class="group relative z-10 transition flex flex-col text-md font-bold"
+        >
+          <a :href="item.link" class="hover:bg-transparent">
+            <div class="shadow-inner shadow-xl text-white">{{ item.title }}</div>
+            <div class="w-0 h-0.25 bg-transparent duration-400 group-hover:(w-full bg-white)"/>
+          </a>
+        </button>
+      </div>
+      <div class="flex justify-center pt-10">
+        <button class="m-auto text-center" @click="commonStore.enableSearch">
+          <img width="30" height="30" src="@/assets/icons/icon-Search.png">
+        </button>
+      </div>
+    </main>
 </template>
