@@ -26,7 +26,7 @@ const onClick = () => {
 }
 </script>
 <template>
-  <div class="flex flex-col pb-2">
+  <div class="flex flex-col">
     <component :is="tag" class="pb-1" :class="styleOptions.title" @click="onClick">{{title}}</component>
     <div :class="styleOptions.border"/>
   </div>

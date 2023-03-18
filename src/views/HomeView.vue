@@ -39,7 +39,7 @@ const isShowMainLight = computed(() => !commonStore.isShowHeader && !commonStore
     </main>
     <div
         class="fixed transform duration-800 w-full text-center"
-        :class="commonStore.isEnableNote ? 'bottom-[92vh] z-3 rotate-180' : 'bottom-0'"
+        :class="commonStore.isEnableNote ? 'bottom-[92vh] z-4 rotate-180' : 'bottom-0'"
     >
       <button
           :class="{'animate__bounce' : !commonStore.isEnableNote}"
