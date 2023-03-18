@@ -48,5 +48,5 @@ const isShowMainLight = computed(() => !commonStore.isShowHeader && !commonStore
         <img src="@/assets/icons/icon-ArrowUp.png" class="w-6 h-3 animate-toUp">
       </button>
     </div>
-    <Note v-if="commonStore.isEnableNote" />
+    <Note v-if="commonStore.isEnableNote" class="animate-flashLightClassic" />
 </template>
