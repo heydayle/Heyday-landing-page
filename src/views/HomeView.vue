@@ -3,6 +3,7 @@ import { useCommonStore } from "@/stores/common";
 import { HeaderItems } from "@/utils/enums";
 import {computed} from "vue";
 import Search from "@/components/general/search.vue";
+import Note from "@/components/general/note.vue";
 const commonStore = useCommonStore()
 
 const isShowMainLight = computed(() => !commonStore.isShowHeader && !commonStore.isEnableSearch)
@@ -10,7 +11,7 @@ const isShowMainLight = computed(() => !commonStore.isShowHeader && !commonStore
 
 <template>
     <Search v-show="commonStore.isEnableSearch" />
-    <main v-if="isShowMainLight"  class="m-auto flex-1 animate-flashLightClassic">
+    <main v-if="isShowMainLight" class="m-auto flex-1 animate-flashLightClassic">
       <h1 class="
       text-[8rem] text-white text-center
       font-extrabold text-transparent bg-clip-text
@@ -36,7 +37,10 @@ const isShowMainLight = computed(() => !commonStore.isShowHeader && !commonStore
         </button>
       </div>
     </main>
-    <div class="fixed transform duration-800 w-full text-center" :class="commonStore.isEnableNote ? 'bottom-[92vh] z-3 rotate-180' : 'bottom-0'">
+    <div
+        class="fixed transform duration-800 w-full text-center"
+        :class="commonStore.isEnableNote ? 'bottom-[92vh] z-3 rotate-180' : 'bottom-0'"
+    >
       <button
           :class="{'animate__bounce' : !commonStore.isEnableNote}"
           class="animate__animated animate__infinite animate__slower m-auto p-4"
@@ -44,4 +48,5 @@ const isShowMainLight = computed(() => !commonStore.isShowHeader && !commonStore
         <img src="@/assets/icons/icon-ArrowUp.png" class="w-6 h-3 animate-toUp">
       </button>
     </div>
+    <Note v-if="commonStore.isEnableNote" />
 </template>

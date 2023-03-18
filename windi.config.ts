@@ -9,6 +9,9 @@ export default defineConfig({
                 teal: {
                     100: '#096',
                 },
+                snowDrift: {
+                    500: '#F8F9FA'
+                },
             },
             keyframes: {
                 swingingLightBulb: {
