@@ -88,6 +88,9 @@ onMounted(() => {
           <div class="space-x-2">
             <a v-if="item.homepage" :href="item.homepage" target="_blank">page</a>
           </div>
+          <div class="space-x-2">
+            <a v-if="item.homepage" :href="item.homepage" target="_blank">page</a>
+          </div>
         </div>
         </template>
       </div>
