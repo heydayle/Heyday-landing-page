@@ -6,7 +6,12 @@ import ElementBorderBottom from "@/components/shared/ElementBorderBottom.vue"
 import { computed, onMounted, ref } from "vue";
 import axios from "axios";
 
-const VITE_BASE_API_URL = import.meta.env.VITE_BASE_API_URL
+// declare const process: {
+//   env: {
+//     VITE_BASE_API_URL: string
+//   }
+// };
+
 const tab = ref(0)
 const RepoSchema:IRepository = {
   name: '',
@@ -27,7 +32,7 @@ const getColor = (lang: TypeLanguage): string => {
 }
 const fetchRepoList = async () => {
   const reposURL = 'users/heydayle/repos'
-  const response = await axios.get( VITE_BASE_API_URL + reposURL)
+  const response = await axios.get( process.env.VITE_BASE_API_URL + reposURL)
   repositories.value = response.data
 }
 onMounted(() => {

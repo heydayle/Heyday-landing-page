@@ -3,18 +3,21 @@ import vue from '@vitejs/plugin-vue'
 import WindiCSS from 'vite-plugin-windicss'
 
 import type { UserConfig } from 'vite';
+// import type { NodeJS } from 'node/types';
+// type ProcessEnv = NodeJS.ProcessEnv;
+import dotenv from 'dotenv'
+import * as process from "process";
 
 export default (): UserConfig => {
+    // const {
+    //     VITE_BASE_API_URL
+    // } = process.env as ProcessEnv;
     return {
-        build: {
-            target: 'es2015',
-            lib: {
-                entry: 'src/main.ts',
-                formats: ['es']
-            }
-        },
         server: {
             port: 3400,
+        },
+        define: {
+            'process.env': process.env
         },
         plugins: [
             vue(),
@@ -27,7 +30,7 @@ export default (): UserConfig => {
           }
     };
 };
-
+dotenv.config();
 // https://vitejs.dev/config/
 // export default defineConfig({
 //   plugins: [

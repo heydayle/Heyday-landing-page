@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { useCommonStore } from "@/stores/common";
 import { HeaderItems } from "@/utils/enums";
-import {computed} from "vue";
+import {computed, onMounted} from "vue";
 import Search from "@/components/general/search.vue";
 import Note from "@/components/general/note.vue";
 const commonStore = useCommonStore()
 
 const isShowMainLight = computed(() => !commonStore.isShowHeader && !commonStore.isEnableSearch)
+onMounted(() => {
+  // console.log(process.env)
+})
 </script>
 
 <template>
