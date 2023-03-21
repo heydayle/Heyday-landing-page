@@ -35,14 +35,18 @@ onMounted(() => {
         </button>
       </div>
       <div class="flex justify-center pt-10">
-        <button class="m-auto text-center" @click="commonStore.enableSearch">
-          <img width="30" height="30" src="@/assets/icons/icon-Search.png">
+        <button
+            class="m-auto text-center animate__animated animate__slower "
+            :class="commonStore.isEnableNote ? 'animate__backOutUp' : 'animate__backInUp'"
+            @click="commonStore.enableNote(commonStore.isEnableNote)"
+        >
+          <img width="30" height="30" src="@/assets/icons/icon-ArrowUp.png">
         </button>
       </div>
     </main>
     <div
         class="fixed transform duration-800 w-full text-center"
-        :class="commonStore.isEnableNote ? 'bottom-[92vh] z-4 rotate-180' : 'bottom-0'"
+        :class="commonStore.isEnableNote ? 'bottom-[92vh] z-4 rotate-180 opacity-100' : '-bottom-20 opacity-0'"
     >
       <button
           class="animate__animated animate__infinite animate__slower m-auto p-4"

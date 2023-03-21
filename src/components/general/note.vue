@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { TabsItems, TabsType, LanguageColor } from "@/utils/enums";
 import type TypeLanguage from "@/utils/interface/language";
 import type { IRepository } from "@/utils/interface/repository";
+import { TabsItems, TabsType, LanguageColor } from "@/utils/enums";
 import ElementBorderBottom from "@/components/shared/ElementBorderBottom.vue"
 import { computed, onMounted, ref } from "vue";
 import axios from "axios";
@@ -31,7 +31,7 @@ const getColor = (lang: TypeLanguage): string => {
   return LanguageColor[lang]
 }
 const fetchRepoList = async () => {
-  const reposURL = 'users/heydayle/repos'
+  const reposURL = 'users/heydayle/repos?sort=pushed_at'
   const response = await axios.get( process.env.VITE_BASE_API_URL + reposURL)
   repositories.value = response.data
 }
@@ -63,7 +63,7 @@ onMounted(() => {
               class="group p-4 cursor-pointer duration-500 border border-gray-100 rounded-xl hover:border-gray-400"
           >
           <div class="flex justify-between">
-            <ElementBorderBottom tag="div" :title="item.name"/>
+            <ElementBorderBottom tag="div" :style-options="{ title: 'text-gray-600' }" :title="item.name"/>
             <div class="flex space-x-2">
               <a :href="item.svn_url" class="hover:bg-transparent">
                 <img class="w-4 h-4" src="@/assets/icons/icon-Github.png" alt="">
