@@ -42,7 +42,6 @@ const isShowMainLight = computed(() => !commonStore.isShowHeader && !commonStore
         :class="commonStore.isEnableNote ? 'bottom-[92vh] z-4 rotate-180' : 'bottom-0'"
     >
       <button
-          :class="{'animate__bounce' : !commonStore.isEnableNote}"
           class="animate__animated animate__infinite animate__slower m-auto p-4"
           @click="commonStore.enableNote(commonStore.isEnableNote)">
         <img src="@/assets/icons/icon-ArrowUp.png" class="w-6 h-3 animate-toUp">

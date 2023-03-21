@@ -40,14 +40,10 @@ export const TabsType = {
     Blog: 3,
     Contact: 4
 }
-export interface ILanguageColor {
-    Vue: string, JavaScript: string, HTML: string, PHP: string, TypeScript: string
-}
-export const LanguageColor: ILanguageColor = {
+export const LanguageColor = {
     Vue: '#41B883',
     JavaScript: '#F1E05A',
     HTML: '#E34C26',
     PHP: '#4F5D95',
     TypeScript: '#3178C6',
 }
-export type TypeOfLanguage = keyof ILanguageColor

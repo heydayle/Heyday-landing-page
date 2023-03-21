@@ -1,20 +1,14 @@
 <script setup lang="ts">
 import { TabsItems, TabsType, LanguageColor } from "@/utils/enums";
+import type TypeLanguage from "@/utils/interface/language";
+import type { IRepository } from "@/utils/interface/repository";
 import ElementBorderBottom from "@/components/shared/ElementBorderBottom.vue"
 import { computed, onMounted, ref } from "vue";
 import axios from "axios";
 
+const VITE_BASE_API_URL = import.meta.env.VITE_BASE_API_URL
 const tab = ref(0)
-interface ISchema {
-  name: string,
-  language: TypeLang,
-  svn_url: string,
-  clone_url: string,
-  description: string,
-  homepage: string,
-  topics: string[]
-}
-const schema:ISchema = {
+const RepoSchema:IRepository = {
   name: '',
   language: 'Vue',
   svn_url: '',
@@ -23,20 +17,17 @@ const schema:ISchema = {
   homepage: '',
   topics: []
 }
-type TypeLang = 'Vue' | 'JavaScript' | 'TypeScript' | 'PHP' | 'HTML'
 const isProject = computed(() => tab.value === TabsType.Projects)
-const repositories = ref([schema])
+const repositories = ref([RepoSchema])
 const changeTab = (value: number) => {
   tab.value = value
 }
-
-const getColor = (lang: TypeLang): void => {
-  let color: any  = LanguageColor[lang];
-  return color
+const getColor = (lang: TypeLanguage): string => {
+  return LanguageColor[lang]
 }
 const fetchRepoList = async () => {
-  const reposApi ='users/heydayle/repos'
-  const response = await axios.get('https://api.github.com/'+ reposApi)
+  const reposURL = 'users/heydayle/repos'
+  const response = await axios.get( VITE_BASE_API_URL + reposURL)
   repositories.value = response.data
 }
 onMounted(() => {
@@ -64,30 +55,32 @@ onMounted(() => {
           <div
               v-if="item.language"
               :key="index"
-              class="group p-4 cursor-pointer border border-gray-100 rounded-xl hover:border-gray-400"
+              class="group p-4 cursor-pointer duration-500 border border-gray-100 rounded-xl hover:border-gray-400"
           >
           <div class="flex justify-between">
-            <ElementBorderBottom tag="h1" :title="item.name"/>
-            <a :href="item.svn_url" class="hover:bg-transparent" :title="`go ${item.name}`">
-              <img class="w-4 h-4" src="@/assets/icons/icon-Link.png" alt="">
-            </a>
+            <ElementBorderBottom tag="div" :title="item.name"/>
+            <div class="flex space-x-2">
+              <a :href="item.svn_url" class="hover:bg-transparent">
+                <img class="w-4 h-4" src="@/assets/icons/icon-Github.png" alt="">
+              </a>
+              <a v-if="item.homepage" :href="item.homepage" class="hover:bg-transparent">
+                <img class="w-4 h-4" src="@/assets/icons/icon-Link.png" alt="">
+              </a>
+            </div>
           </div>
           <p class="text-gray-400 text-sm pb-2">{{ item.clone_url || '' }}</p>
           <p> {{ item.description || '' }} </p>
-          <div class="space-x-2">
-            <span
-                v-for="topic in item.topics"
-                class="inline-block rounded-full px-4 pt-0.5 pb-1 mt-2 border border-black text-xs">
-              {{topic}}
-            </span>
-          </div>
-          <div class="flex align-center space-x-2">
+          <div class="flex mt-4 align-center space-x-2">
             <div class="h-2 w-2 rounded-full my-auto" :style="`background: ${getColor(item.language)}`"/>
             <div>{{item.language}}</div>
           </div>
           <div class="space-x-2">
-            <a v-if="item.homepage" :href="item.homepage" target="_blank">page</a>
-          </div>
+            <span
+                v-for="topic in item.topics"
+                class="inline-block rounded-full px-2 pt-0.5 pb-1 mt-2 border border-gray-400 text-xs text-gray-400">
+              {{topic}}
+            </span>
+            </div>
         </div>
         </template>
       </div>
