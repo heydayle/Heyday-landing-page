@@ -3,18 +3,18 @@ import vue from '@vitejs/plugin-vue'
 import WindiCSS from 'vite-plugin-windicss'
 
 import type { UserConfig } from 'vite';
-// import type { NodeJS } from 'node/types';
-// type ProcessEnv = NodeJS.ProcessEnv;
 import dotenv from 'dotenv'
 import * as process from "process";
+import * as path from "path";
 
+dotenv.config({
+    path: path.join(__dirname, process.env.FILE_ENV as string)
+})
+console.log(process.env.FILE_ENV)
 export default (): UserConfig => {
-    // const {
-    //     VITE_BASE_API_URL
-    // } = process.env as ProcessEnv;
     return {
         server: {
-            port: 3400,
+            port: Number(process.env.VITE_PORT),
         },
         define: {
             'process.env': process.env

@@ -6,25 +6,9 @@ import ElementBorderBottom from "@/components/shared/ElementBorderBottom.vue"
 import { computed, onMounted, ref } from "vue";
 import axios from "axios";
 
-// declare const process: {
-//   env: {
-//     VITE_BASE_API_URL: string
-//   }
-// };
-
 const tab = ref(0)
-//region [Projects DATA]
-const RepoSchema:IRepository = {
-  name: '',
-  language: 'Vue',
-  svn_url: '',
-  clone_url: '',
-  description: '',
-  homepage: '',
-  topics: []
-}
 const isProject = computed(() => tab.value === TabsType.Projects)
-const repositories = ref([RepoSchema])
+const repositories = ref<IRepository[]>([])
 //#endregion
 //region [LIBRARY]
 const isLibrary = computed(() => tab.value === TabsType.Library)
@@ -44,8 +28,12 @@ const fetchRepoList = async () => {
   repositories.value = response.data
   isLoading.value = false;
 }
+function func<T, C>(a:T, b:C){
+  return {a, b}
+}
 onMounted(() => {
   fetchRepoList()
+  func<number, string>(1,'2')
 })
 </script>
 <template>
@@ -56,9 +44,9 @@ onMounted(() => {
           class="group relative z-2 transition flex flex-col text-md font-bold"
           @click="changeTab(item.value)"
       >
-        <div class="shadow-inner shadow-xl text-white">{{ item.title }}</div>
-        <div
-            class="w-0 h-0.25 bg-transparent duration-400 group-hover:(w-full bg-white)"
+        <span class="shadow-inner shadow-xl text-white">{{ item.title }}</span>
+        <span
+            class="w-0 h-0.25 bg-transparent duration-800 group-hover:(w-full bg-white)"
             :class="{'!w-full bg-white' : item.value === tab}"
         />
       </button>
@@ -104,17 +92,17 @@ onMounted(() => {
                     <div>{{item.language}}</div>
                   </div>
                   <div class="space-x-2">
-              <span
-                  v-for="topic in item.topics"
-                  class="inline-block rounded-full px-2 pt-0.5 pb-1 mt-2 border border-gray-400 text-xs text-gray-400">
-                {{topic}}
-              </span>
+                  <span
+                      v-for="topic in item.topics"
+                      class="inline-block rounded-full px-2 pt-0.5 pb-1 mt-2 border border-gray-400 text-xs text-gray-400">
+                    {{topic}}
+                  </span>
                   </div>
                 </div>
               </template>
             </div>
           </div>
-          <template v-if="libraries.length < 1">
+          <template v-if="repositories.length < 1">
             <div>
               <p class="m-auto text-center text-gray-400">Updating...</p>
             </div>
