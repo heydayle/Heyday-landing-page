@@ -24,7 +24,7 @@ const RepoSchema:IRepository = {
   topics: []
 }
 const isProject = computed(() => tab.value === TabsType.Projects)
-const repositories = ref([])
+const repositories = ref([RepoSchema])
 //#endregion
 //region [LIBRARY]
 const isLibrary = computed(() => tab.value === TabsType.Library)
