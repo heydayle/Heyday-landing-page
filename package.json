@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "env-cmd -f .env \"vite\"",
     "dev-2": "cross-env FILE_ENV=.env.development vite",
-    "build": "run-p type-check build-only",
+    "build": "cross-env FILE_ENV=.env.development run-p type-check build-only",
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",

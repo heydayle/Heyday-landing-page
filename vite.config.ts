@@ -8,9 +8,8 @@ import * as process from "process";
 import * as path from "path";
 
 dotenv.config({
-    path: path.join(__dirname, process.env.FILE_ENV as string)
+    'path': String(path.join(__dirname, process.env.FILE_ENV as string))
 })
-console.log(process.env.FILE_ENV)
 export default (): UserConfig => {
     return {
         server: {
