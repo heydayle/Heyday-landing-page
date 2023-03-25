@@ -3,7 +3,7 @@ import { useCommonStore } from "@/stores/common";
 import { HeaderItems } from "@/utils/enums";
 import {computed, onMounted} from "vue";
 import Search from "@/components/general/search.vue";
-import Note from "@/components/general/note.vue";
+import Category from "@/components/general/category.vue";
 const commonStore = useCommonStore()
 
 const isShowMainLight = computed(() => !commonStore.isShowHeader && !commonStore.isEnableSearch)
@@ -23,13 +23,13 @@ onMounted(() => {
       >
         <span style="text-shadow: rgba(0,0,0,0.3) -3px 4px;">HEYDAY</span>
       </h1>
-      <div class="flex justify-center space-x-4 text-white px-10">
+      <div v-if="!commonStore.isEnableNote" class="flex justify-center space-x-4 text-white px-10">
         <button
             v-for="(item, index) in HeaderItems" :key="index"
             class="group relative z-2 transition flex flex-col text-md font-bold"
         >
           <a :href="item.link" class="hover:bg-transparent">
-            <div class="shadow-inner shadow-xl text-white">{{ item.title }}</div>
+            <span class="shadow-inner shadow-xl text-white">{{ item.title }}</span>
             <div class="w-0 h-0.25 bg-transparent duration-400 group-hover:(w-full bg-white)"/>
           </a>
         </button>
@@ -54,5 +54,5 @@ onMounted(() => {
         <img src="@/assets/icons/icon-ArrowUp.png" class="w-6 h-3 animate-toUp">
       </button>
     </div>
-    <Note v-if="commonStore.isEnableNote" class="animate-flashLightClassic" />
+    <Category v-if="commonStore.isEnableNote" />
 </template>

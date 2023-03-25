@@ -18,7 +18,11 @@ export const HeaderItems = [
 ]
 export const TabsItems = [
     {
-        title: 'Projects',
+        title: 'Portfolio',
+        value: 0
+    },
+    {
+        title: 'Personal Projects',
         value: 1
     },
     {
