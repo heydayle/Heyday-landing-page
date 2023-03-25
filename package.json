@@ -1,11 +1,12 @@
+
 {
   "name": "landing-page-heyday",
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "env-cmd -f .env \"vite\"",
-    "dev-2": "cross-env FILE_ENV=.env.development vite",
-    "build": "cross-env FILE_ENV=.env.development run-p type-check build-only",
+    "dev-cmd": "env-cmd -f .env \"vite\"",
+    "dev": "cross-env FILE_ENV=.env.development vite",
+    "build": "cross-env FILE_ENV=.env.production run-p type-check build-only",
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
