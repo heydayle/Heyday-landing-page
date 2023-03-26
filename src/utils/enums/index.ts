@@ -18,7 +18,7 @@ export const HeaderItems = [
 ]
 export const TabsItems = [
     {
-        title: 'Portfolio',
+        title: 'Information',
         value: 0
     },
     {
