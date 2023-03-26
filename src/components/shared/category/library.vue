@@ -2,7 +2,8 @@
 //#region [Data]
 const props = defineProps({
   libraries: {
-    type: Array
+    type: Array,
+    default: () => []
   },
   isLoading: {
     type: Boolean,

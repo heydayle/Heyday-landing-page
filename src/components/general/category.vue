@@ -1,16 +1,12 @@
 <script setup lang="ts">
-import type TypeLanguage from "@/utils/interface/language";
 import type { IRepository } from "@/utils/interface/repository";
-import { TabsItems, TabsType, LanguageColor } from "@/utils/enums";
-import ElementBorderBottom from "@/components/shared/ElementBorderBottom.vue"
+import { TabsItems, TabsType } from "@/utils/enums";
 import { computed, onMounted, ref } from "vue";
-import axios from "axios";
 import PersonalProjects from "@/components/shared/category/personalProjects.vue";
 import Library from "@/components/shared/category/library.vue";
 
 const tab = ref(0)
 const isProject = computed(() => tab.value === TabsType.Projects)
-const repositories = ref<IRepository[]>([])
 //#endregion
 //region [LIBRARY]
 const isLibrary = computed(() => tab.value === TabsType.Library)
@@ -20,18 +16,10 @@ const isLoading = ref(false)
 const changeTab = (value: number) => {
   tab.value = value
 }
-const fetchRepoList = async () => {
-  isLoading.value = true;
-  const reposURL = 'users/heydayle/repos?sort=pushed_at'
-  const response = await axios.get( process.env.VITE_BASE_API_URL + reposURL)
-  repositories.value = response.data
-  isLoading.value = false;
-}
 function func<T, C>(a:T, b:C){
-  return {a, b}
+  return { a, b }
 }
 onMounted(() => {
-  fetchRepoList()
   func<number, string>(1,'2')
 })
 </script>
@@ -51,13 +39,7 @@ onMounted(() => {
       </button>
     </div>
     <div>
-      <PersonalProjects
-          v-if="isProject"
-          v-bind="{
-            repositories,
-            isLoading
-          }"
-      />
+      <PersonalProjects v-if="isProject"/>
       <Library
           v-if="isLibrary"
           v-bind="{

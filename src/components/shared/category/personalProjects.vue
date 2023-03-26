@@ -1,19 +1,26 @@
 <script setup lang="ts">
+import { onMounted, ref } from "vue";
+import axios from "axios";
 import ElementBorderBottom from "@/components/shared/ElementBorderBottom.vue"
 import type TypeLanguage from "@/utils/interface/language";
+import type { IRepository } from "@/utils/interface/repository";
 import { LanguageColor } from "@/utils/enums";
-const props = defineProps({
-  repositories: {
-    type: Array
-  },
-  isLoading: {
-    type: Boolean,
-    default: false
-  }
-})
+
+const repositories = ref<IRepository[]>([])
+const isLoading = ref<boolean>(false)
+const fetchRepoList = async () => {
+  isLoading.value = true;
+  const reposURL = 'users/heydayle/repos?sort=pushed_at'
+  const response = await axios.get( process.env.VITE_BASE_API_URL + reposURL)
+  repositories.value = response.data
+  isLoading.value = false;
+}
 const getColor = (lang: TypeLanguage): string => {
   return LanguageColor[lang]
 }
+onMounted(() => {
+  fetchRepoList()
+})
 </script>
 <template>
   <div>
