@@ -1,5 +1,5 @@
 <template>
-  <div class="relative z-2 text-gray-300 h-[90vh] lg:h-[700px]">
+  <div class="relative z-2 text-gray-300 h-[90vh] lg:h-[700px]" style="color: lightgray">
     <div class="p-16 h-full overflow-auto text-justify">
       <div class="text-xl font-bold py-4"> My life changed a lot when I met a
         <a href="https://en.wikipedia.org/wiki/Rosa_multiflora" target="_blank" class="hover:bg-transparent">

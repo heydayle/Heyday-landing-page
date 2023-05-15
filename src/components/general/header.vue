@@ -7,13 +7,13 @@ const commonStore = useCommonStore()
 </script>
 <template>
   <header
-      class="fixed z-2 from-black to-transparent bg-gradient-to-b h-10 duration-200 w-full p-4"
+      class="fixed z-3 from-black to-transparent bg-gradient-to-b h-10 duration-200 w-full p-4"
       :class="{'h-26' : commonStore.isShowHeader}"
   >
+    <button v-show="commonStore.isShowHeader" @click="commonStore.onHideHeader">
+      <img src="@/assets/icons/icon-ArrowUp.png" class="w-6 h-3 animate-toUp">
+    </button>
     <div v-show="commonStore.isShowHeader" class="flex duration-200 opacity-100">
-      <button @click="commonStore.onHideHeader">
-        <img src="@/assets/icons/icon-ArrowUp.png" class="w-6 h-3 animate-toUp">
-      </button>
       <div class="flex space-x-4 text-white px-10">
         <button
             v-for="(item, index) in HeaderItems" :key="index"
