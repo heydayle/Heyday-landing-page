@@ -15,6 +15,11 @@ export const HeaderItems = [
         title: 'Wakatime',
         link: 'https://wakatime.com/@heyday'
     },
+    {
+        title: 'About',
+        link: 'https://wakatime.com/@heyday',
+        path: '/about'
+    },
 ]
 export const TabsItems = [
     {
